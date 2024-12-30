@@ -13,9 +13,15 @@
             <h1><a href="/" class="site-title">{{ title ?? 'Pebble CMS' }}</a></h1>
             <nav>
                 <a href="/">Home</a>
-                <a href="/page/about">About</a>
                 <a href="/page/contact">Contact</a>
+                <a href="/page/about">About</a>
+                <ul>
+                    {% for category in siteCategories %}
+                    <li><a href="/category/{{ category }}">{{ category }}</a></li>
+                    {% endfor %}
+                </ul>
             </nav>
+            
         </div>
     </header>
 

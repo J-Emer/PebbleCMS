@@ -1,0 +1,16 @@
+{% extends 'base.twig.html' %}
+
+{% block content %}
+<h2>Posts in the "{{ category }}" category</h2>
+
+<ul>
+    {% for post in posts %}
+    <li>
+        <a href="/post/{{ post.slug }}">{{ post.title }}</a>
+        <p>{{ post.description }}</p>
+    </li>
+    {% else %}
+    <li>No posts found in this category.</li>
+    {% endfor %}
+</ul>
+{% endblock %}

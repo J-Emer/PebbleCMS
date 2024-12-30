@@ -56,7 +56,21 @@ class ContentLoader
             'title' => $frontMatter['title'] ?? 'Untitled',
             'description' => $frontMatter['description'] ?? 'No description available.',
             'content' => $htmlContent,
-            'template' => $frontMatter['template'] ?? 'page'
+            'template' => $frontMatter['template'] ?? 'page',
+            'categories' => $frontMatter['categories'] ?? [],
+            'slug' => $frontMatter['slug'] 
         ];
+    }
+
+    public function loadAllPosts()
+    {
+        $postFiles = glob($this->contentDir . '/posts/*.md');
+        $posts = [];
+    
+        foreach ($postFiles as $file) {
+            $posts[] = $this->parseFile($file);
+        }
+    
+        return $posts;
     }
 }

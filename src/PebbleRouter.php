@@ -23,6 +23,7 @@ class PebbleRouter
         $this->router->get('/', [$this, 'handleHome']);
         $this->router->get('/page/{slug}', [$this, 'handlePage']); // Dynamic page route
         $this->router->get('/post/{slug}', [$this, 'handlePost']); // Dynamic post route
+        $this->router->get('/category/{slug}', [$this, 'handleCategory']); // Dynamic post route
     }
 
     public function dispatch()
@@ -83,6 +84,28 @@ class PebbleRouter
         $this->render($postData['template'] . '.twig.html', $postData);
     }
 
+    public function handleCategory($categorySlug)
+    {
+        // Load site configuration
+        $siteName = $this->configLoader->get('site.name');
+        $siteDescription = $this->configLoader->get('site.description');
+    
+        // Load all posts and filter by category
+        $posts = $this->contentLoader->loadAllPosts();
+        $categoryPosts = array_filter($posts, function ($post) use ($categorySlug) {
+            return in_array($categorySlug, $post['categories']);
+        });
+    
+        // Pass the filtered posts to the template
+        $this->render('category.twig.html', [
+            'category' => $categorySlug,
+            'posts' => $categoryPosts,
+            'title' => "{$categorySlug} Posts",
+            'description' => "Posts under the {$categorySlug} category",
+        ]);
+    }
+    
+
     private function handle404(){
         $this->render('404.twig.html', []);
     }
@@ -90,6 +113,17 @@ class PebbleRouter
     private function render($template, $data)
     {
         $templateRenderer = new TemplateRenderer($this->configLoader);
-        $templateRenderer->render($template, $data);
+        $templateRenderer->render($template, array_merge($data, ['siteCategories' => $this->GetCategories()]));
+    }
+
+    private function GetCategories()
+    {
+                // Load all posts
+        $posts = $this->contentLoader->loadAllPosts();
+
+        // Gather unique categories
+        return array_unique(array_merge(...array_map(function ($post) {
+            return $post['categories'];
+        }, $posts)));
     }
 }
