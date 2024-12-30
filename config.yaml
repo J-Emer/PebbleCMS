@@ -1,0 +1,19 @@
+# config.yaml
+
+site:
+  name: "Pebble CMS"
+  description: "A lightweight content management system"
+  url: "http://localhost:8000"
+  timezone: "America/New_York"  # Timezone for the site (used for date formatting)
+
+theme:
+  name: "default"  # The name of the theme to use
+  path: "/themes/default"  # Path to the theme directory
+
+content:
+  posts_directory: "/content/posts"
+  pages_directory: "/content/pages"
+
+# Optional settings
+pagination:
+  posts_per_page: 10  # Number of posts per page for pagination
