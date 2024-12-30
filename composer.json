@@ -1,0 +1,18 @@
+{
+    "name": "jemer/pebble-cms",
+    "description": "Simple lightweight CMS using .md files",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Jemer\\PebbleCms\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jemer",
+            "email": "jemerson6989@gmail.com"
+        }
+    ],
+    "require": {}
+}
