@@ -17,10 +17,6 @@ class TemplateRenderer
         $this->configLoader = $configLoader;
         $theme = $this->configLoader->get('theme.path');
         $themePath = $theme . '/' . 'templates';
-        //$loader = new FilesystemLoader(__DIR__ . '/../themes/default/templates');
-
-        echo "theme path: " . $themePath . "<br/>";
-
         $loader = new FilesystemLoader($themePath);
         $this->twig = new Environment($loader);
         $this->twig->addExtension(new AssetTwigExtension(
