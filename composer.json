@@ -14,5 +14,11 @@
             "email": "jemerson6989@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "league/commonmark": "^2.6",
+        "twig/twig": "^3.18",
+        "symfony/yaml": "^6.0",
+        "spatie/yaml-front-matter": "^2.1",
+        "symfony/filesystem": "^6.0"
+    }
 }
