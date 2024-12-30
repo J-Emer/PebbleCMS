@@ -3,6 +3,7 @@ title: Markdown Tips and Tricks
 author: Admin
 date: 2024-12-28
 tags: [markdown, guide, tips]
+template: post
 ---
 
 # Markdown Tips and Tricks

@@ -3,6 +3,7 @@ title: Hello, World!
 author: Admin
 date: 2024-12-29
 tags: [introduction, cms]
+template: post
 ---
 
 # Hello, World!

@@ -9,10 +9,12 @@ class PebbleRouter
 {
     private $router;
     private $contentLoader;
+    private $configLoader;
 
-    public function __construct(ContentLoader $contentLoader)
+    public function __construct(ContentLoader $contentLoader, ConfigLoader $configLoader)
     {
         $this->contentLoader = $contentLoader;
+        $this->configLoader = $configLoader;
 
         // Initialize the router
         $this->router = new Router();
@@ -31,9 +33,16 @@ class PebbleRouter
 
     public function handleHome()
     {
-        // Load a static home page (for now)
+        // Load site configuration
+        $siteName = $this->configLoader->get('site.name');
+        $siteDescription = $this->configLoader->get('site.description');
+        
+        // Load the home page (for now)
         $pageData = $this->contentLoader->loadPage('home');
-        $this->render('page.twig.html', $pageData);
+        $pageData['title'] = $siteName;
+        $pageData['description'] = $siteDescription;
+        
+        $this->render($pageData['template'] . '.twig.html', $pageData);
     }
 
     public function handlePage($slug)
@@ -45,7 +54,14 @@ class PebbleRouter
             return;
         }
 
-        $this->render('page.twig.html', $pageData);
+        // Load site configuration
+        $siteName = $this->configLoader->get('site.name');
+        $siteDescription = $this->configLoader->get('site.description');
+
+        $pageData['title'] = $siteName;
+        $pageData['description'] = $siteDescription;
+
+        $this->render($pageData['template'] . '.twig.html', $pageData);
     }
 
     public function handlePost($slug)
@@ -57,7 +73,14 @@ class PebbleRouter
             return;
         }
 
-        $this->render('post.twig.html', $postData);
+        // Load site configuration
+        $siteName = $this->configLoader->get('site.name');
+        $siteDescription = $this->configLoader->get('site.description');
+
+        $postData['title'] = $siteName;
+        $postData['description'] = $siteDescription;
+
+        $this->render($postData['template'] . '.twig.html', $postData);
     }
 
     private function handle404(){
@@ -66,7 +89,7 @@ class PebbleRouter
 
     private function render($template, $data)
     {
-        $templateRenderer = new TemplateRenderer();
+        $templateRenderer = new TemplateRenderer($this->configLoader);
         $templateRenderer->render($template, $data);
     }
 }

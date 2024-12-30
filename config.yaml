@@ -8,7 +8,7 @@ site:
 
 theme:
   name: "default"  # The name of the theme to use
-  path: "/themes/default"  # Path to the theme directory
+  path: "themes/default"  # Path to the theme directory
 
 content:
   posts_directory: "/content/posts"

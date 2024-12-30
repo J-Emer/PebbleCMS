@@ -56,6 +56,7 @@ class ContentLoader
             'title' => $frontMatter['title'] ?? 'Untitled',
             'description' => $frontMatter['description'] ?? 'No description available.',
             'content' => $htmlContent,
+            'template' => $frontMatter['template'] ?? 'page'
         ];
     }
 }
