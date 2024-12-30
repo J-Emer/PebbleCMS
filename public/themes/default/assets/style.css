@@ -1,41 +1,135 @@
-body {
-    font-family: Arial, sans-serif;
+/* Reset some default browser styles */
+* {
     margin: 0;
     padding: 0;
-    background-color: #474545;
+    box-sizing: border-box;
 }
 
+/* General Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Header Styles */
 header {
     background-color: #333;
-    color: white;
-    padding: 20px;
+    color: #fff;
+    padding: 20px 0;
     text-align: center;
+}
+
+header h1 {
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 1.2em;
+}
+
+/* Navigation Bar */
+nav {
+    background-color: #444;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0;
+}
+
+nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 15px;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    background-color: #555;
+    border-radius: 4px;
+}
+
+/* Main Content Area */
+.main-content {
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+h1, h2, h3 {
+    color: #333;
 }
 
 h1 {
-    margin: 0;
-    font-size: 2em;
+    font-size: 2.5em;
+    margin-bottom: 10px;
 }
 
+h2 {
+    font-size: 2em;
+    margin-bottom: 8px;
+}
+
+h3 {
+    font-size: 1.5em;
+    margin-bottom: 6px;
+}
+
+/* Links */
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Footer Styles */
 footer {
     background-color: #333;
-    color: white;
+    color: #fff;
     text-align: center;
     padding: 10px;
     position: absolute;
-    width: 100%;
     bottom: 0;
+    width: 100%;
 }
 
-.post-content {
-    background-color: white;
+footer p {
+    font-size: 1em;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #f8f8f8;
     padding: 20px;
-    margin: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.img-sml{
-    width: 100px;
-    height: 100px;
+.sidebar h3 {
+    margin-bottom: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-content {
+        width: 95%;
+    }
+
+    nav {
+        font-size: 14px;
+    }
+
+    header h1 {
+        font-size: 1.8em;
+    }
 }

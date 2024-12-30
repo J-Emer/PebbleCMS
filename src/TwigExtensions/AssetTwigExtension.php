@@ -32,26 +32,24 @@ class AssetTwigExtension extends AbstractExtension
     }
 
     // Function that returns the full path to the asset
-    public function getAssetPath($filename, $type = 'images')
+    public function getAssetPath($asset, $type = 'images')
     {
-        // Validate the type (either 'images' or 'js')
-        if (!isset($this->assetPaths[$type])) {
-            throw new \InvalidArgumentException("Invalid asset type: $type");
+        // Get the base URL for the asset type
+        switch ($type) {
+            case 'js':
+                $basePath = '/assets/js/';
+                break;
+            case 'css':
+                $basePath = '/' . $this->themePath . '/' . 'assets/';
+                break;
+            case 'images':
+            default:
+                $basePath = '/assets/images/';
+                break;
         }
-
-        // If the type is 'css', use the theme's CSS directory and filename
-        if ($type === 'css') {
-            // If a specific CSS file is provided, use that; otherwise, use the default
-            $filename = $filename ?: "style.css";
-            //$cssPath = "../themes/default/assets/" . $filename;
-            
-            $cssPath = $this->themePath . '/' . $this->assetPaths[$type] . '/' . $filename;
-            
-            return $cssPath;
-        }
-
-        // Return the full path to the asset
-        return $this->assetPaths[$type] . '/' . $filename;
+    
+        // Return the full URL path
+        return $basePath . $asset;
     }
 }
 
