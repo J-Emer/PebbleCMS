@@ -2,6 +2,7 @@
 
 namespace Jemer\PebbleCms;
 
+use Jemer\PebbleCms\TwigExtensions\AssetTwigExtension;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
 
@@ -15,13 +16,18 @@ class TemplateRenderer
         // Set up the Twig loader and environment
         $this->configLoader = $configLoader;
         $theme = $this->configLoader->get('theme.path');
-        $themePath = "/../" . $theme . '/templates';
+        $themePath = $theme . '/' . 'templates';
         //$loader = new FilesystemLoader(__DIR__ . '/../themes/default/templates');
-        $loader = new FilesystemLoader(__DIR__ . $themePath);
-        $this->twig = new Environment($loader);
 
-        // echo "Theme: " . $this->configLoader->get('theme.path') . "<br/>";
-        // echo "Theme Path: " . $themePath . "<br/>";
+        echo "theme path: " . $themePath . "<br/>";
+
+        $loader = new FilesystemLoader($themePath);
+        $this->twig = new Environment($loader);
+        $this->twig->addExtension(new AssetTwigExtension(
+                                                            $this->configLoader->get('site.url'),
+                                                            $this->configLoader->get('theme.path')
+                                                        ));
+
     }
 
     public function render(string $template, array $data = [])

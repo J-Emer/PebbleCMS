@@ -2,7 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #474545;
 }
 
 header {
@@ -33,4 +33,9 @@ footer {
     margin: 20px;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.img-sml{
+    width: 100px;
+    height: 100px;
 }
