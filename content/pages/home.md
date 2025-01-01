@@ -2,6 +2,7 @@
 title: Home
 description: Learn more about our story and mission.
 template: page
+slug: home
 ---
 
 # Home

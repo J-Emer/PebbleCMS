@@ -2,6 +2,7 @@
 title: About Us
 description: Learn more about our story and mission.
 template: page
+slug: about
 ---
 
 # About Us
