@@ -18,3 +18,16 @@ content:
 # Optional settings
 pagination:
   posts_per_page: 10  # Number of posts per page for pagination
+
+# this is a fucking terrible spot for this...will update later
+# Users section with different roles
+users:
+  - username: "admin_user"
+    password: "$2y$10$Fhpz1C7fvIyjMY8LZvTbFutuit5hf2EmP4Bm5zTDYv7j.1Sqlg5FW"  # 'admin_password' hashed
+    role: "admin"
+  - username: "editor_user"
+    password: "$2y$10$Fhpz1C7fvIyjMY8LZvTbFutuit5hf2EmP4Bm5zTDYv7j.1Sqlg5FW"  # 'editor_password' hashed
+    role: "editor"
+  - username: "regular_user"
+    password: "$2y$10$Fhpz1C7fvIyjMY8LZvTbFutuit5hf2EmP4Bm5zTDYv7j.1Sqlg5FW"  # 'user_password' hashed
+    role: "user"
