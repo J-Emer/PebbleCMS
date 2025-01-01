@@ -5,6 +5,9 @@ namespace Jemer\PebbleCms;
 use Jemer\PebbleCms\ConfigLoader;
 use Jemer\PebbleCms\ContentLoader;
 use Jemer\PebbleCms\PebbleRouter;
+use Jemer\Session\SessionManager;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\Storage\NativeSessionStorage;
 
 class App
 {
@@ -12,9 +15,13 @@ class App
     private PebbleRouter $router;
     private ConfigLoader $configLoader;
     private ContentLoader $contentLoader;
+    private Session $session;
 
     private function __construct()
     {
+        $this->session = new Session(new NativeSessionStorage());
+        $this->session->start();
+        
         // Load configuration
         $configPath = dirname(__DIR__) . '/config.yaml';
         $this->configLoader = new ConfigLoader($configPath);
@@ -77,6 +84,12 @@ class App
     {
         return $this->router;
     }
+
+    public function getSession() : Session
+    {
+        return $this->session;
+    }
+
 
     private function __clone() {}
     public function __wakeup() {}
