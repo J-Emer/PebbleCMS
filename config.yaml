@@ -5,7 +5,8 @@ site:
   description: "A lightweight content management system"
   url: "http://localhost:8000"
   timezone: "America/New_York"  # Timezone for the site (used for date formatting)
-
+  homepage: "home"
+  
 theme:
   name: "default"  # The name of the theme to use
   path: "themes/default"  # Path to the theme directory
