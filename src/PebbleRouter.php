@@ -3,7 +3,6 @@
 namespace Jemer\PebbleCms;
 
 use Bramus\Router\Router;
-use Jemer\PebbleCms\ContentLoader;
 
 class PebbleRouter
 {
@@ -15,7 +14,6 @@ class PebbleRouter
 
         $this->router->setNamespace("Jemer\PebbleCms\Controllers");
 
-
         //basic routes for app functionality
         $this->router->get('/', "MainController@index");
         $this->router->get('/page/{slug}', "MainController@page");
@@ -23,8 +21,9 @@ class PebbleRouter
         $this->router->get('/category/{slug}', "MainController@category");
 
 
-
         //todo: add routes for admin functionality
+
+        $this->router->get("/admin", "AdminController@index");
 
     }
 
