@@ -19,9 +19,9 @@ class App
 
     private function __construct()
     {
-        $this->session = new Session(new NativeSessionStorage());
-        $this->session->start();
-        
+        // $this->session = new Session(new NativeSessionStorage());
+        // $this->session->start();
+
         // Load configuration
         $configPath = dirname(__DIR__) . '/config.yaml';
         $this->configLoader = new ConfigLoader($configPath);
@@ -85,10 +85,10 @@ class App
         return $this->router;
     }
 
-    public function getSession() : Session
-    {
-        return $this->session;
-    }
+    // public function getSession() : Session
+    // {
+    //     return $this->session;
+    // }
 
 
     private function __clone() {}
