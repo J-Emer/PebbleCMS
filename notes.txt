@@ -31,7 +31,7 @@ Required Files:
             and returns an array of key/value pairs
     [x] ConfigLoader.php -> loads the config.yaml files
     [x] Bootstrap.php -> holds all of the defines
-    [] PebbleRouter -> holds all of the routing info
+    [x] PebbleRouter -> holds all of the routing info
     [x] App -> 
         * will manage whole project
         * singleton class, will initialize resources that can

@@ -29,37 +29,62 @@ class __TwigTemplate_03d6bf39d7bdd72af183c28a8fea1dec72c0c27d2309b1f1603d55cd5b4
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
+            'content' => [$this, 'block_content'],
         ];
+    }
+
+    protected function doGetParent(array $context): bool|string|Template|TemplateWrapper
+    {
+        // line 1
+        return "base.twig.html";
     }
 
     protected function doDisplay(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 1
-        yield "<!DOCTYPE html>
-<html lang=\"en\">
-<head>
-    <meta charset=\"UTF-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <title>";
-        // line 6
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["title"] ?? null), "html", null, true);
-        yield "</title>
-</head>
-<body>
-    <h1>";
-        // line 9
+        $this->parent = $this->loadTemplate("base.twig.html", "post.twig.html", 1);
+        yield from $this->parent->unwrap()->yield($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_content(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        // line 4
+        yield "    <article>
+        <h1>";
+        // line 5
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["title"] ?? null), "html", null, true);
         yield "</h1>
-    <p>";
-        // line 10
+        <p>
+            By ";
+        // line 7
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["author"] ?? null), "html", null, true);
+        yield " on ";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["date"] ?? null), "html", null, true);
+        yield "
+            ";
+        // line 8
+        if (($context["category"] ?? null)) {
+            // line 9
+            yield "                in <a href=\"/category/";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["category"] ?? null), "html", null, true);
+            yield "\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["category"] ?? null), "html", null, true);
+            yield "</a>
+            ";
+        }
+        // line 11
+        yield "        </p>
+        <div>";
+        // line 12
         yield ($context["content"] ?? null);
-        yield "</p>
-</body>
-</html>
+        yield "</div>
+    </article>
 ";
         yield from [];
     }
@@ -85,23 +110,25 @@ class __TwigTemplate_03d6bf39d7bdd72af183c28a8fea1dec72c0c27d2309b1f1603d55cd5b4
      */
     public function getDebugInfo(): array
     {
-        return array (  59 => 10,  55 => 9,  49 => 6,  42 => 1,);
+        return array (  85 => 12,  82 => 11,  74 => 9,  72 => 8,  66 => 7,  61 => 5,  58 => 4,  51 => 3,  40 => 1,);
     }
 
     public function getSourceContext(): Source
     {
-        return new Source("<!DOCTYPE html>
-<html lang=\"en\">
-<head>
-    <meta charset=\"UTF-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <title>{{ title }}</title>
-</head>
-<body>
-    <h1>{{ title }}</h1>
-    <p>{{ content | raw }}</p>
-</body>
-</html>
+        return new Source("{% extends \"base.twig.html\" %}
+
+{% block content %}
+    <article>
+        <h1>{{ title }}</h1>
+        <p>
+            By {{ author }} on {{ date }}
+            {% if category %}
+                in <a href=\"/category/{{ category }}\">{{ category }}</a>
+            {% endif %}
+        </p>
+        <div>{{ content|raw }}</div>
+    </article>
+{% endblock %}
 ", "post.twig.html", "C:\\Users\\jemer\\WebProjects\\PebbleCMS\\themes\\default\\post.twig.html");
     }
 }

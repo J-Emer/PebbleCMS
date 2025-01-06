@@ -1,0 +1,15 @@
+{% extends "base.twig.html" %}
+
+{% block content %}
+    <h1>Available Categories</h1>
+
+    {% if categories is empty %}
+        <p>No categories available.</p>
+    {% else %}
+        <ul>
+        {% for category in categories %}
+            <li><a href="/category/{{ category }}">{{ category }}</a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

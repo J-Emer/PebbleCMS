@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Posts in {{ category }}</title>
-</head>
-<body>
-    <h1>Posts in {{ category }}</h1>
+{% extends "base.twig.html" %}
+
+{% block content %}
+    <h1>Posts in "{{ category }}"</h1>
 
     {% if posts is empty %}
         <p>No posts found in this category.</p>
@@ -15,10 +10,9 @@
         {% for post in posts %}
             <li>
                 <a href="/post/{{ post.slug }}">{{ post.title }}</a>
-                <p><strong>By:</strong> {{ post.author }} | <strong>Date:</strong> {{ post.date }}</p>
+                <small>by {{ post.author }} on {{ post.date }}</small>
             </li>
         {% endfor %}
         </ul>
     {% endif %}
-</body>
-</html>
+{% endblock %}

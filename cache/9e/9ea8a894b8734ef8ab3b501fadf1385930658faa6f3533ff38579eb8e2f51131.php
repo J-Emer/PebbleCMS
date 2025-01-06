@@ -29,74 +29,74 @@ class __TwigTemplate_dfb02b99610bf44d314036c7b9439d8266f88868b99aaa2f72bae4dc93a
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
+            'content' => [$this, 'block_content'],
         ];
+    }
+
+    protected function doGetParent(array $context): bool|string|Template|TemplateWrapper
+    {
+        // line 1
+        return "base.twig.html";
     }
 
     protected function doDisplay(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 1
-        yield "<!DOCTYPE html>
-<html lang=\"en\">
-<head>
-    <meta charset=\"UTF-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <title>Posts in ";
-        // line 6
+        $this->parent = $this->loadTemplate("base.twig.html", "category.twig.html", 1);
+        yield from $this->parent->unwrap()->yield($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_content(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        // line 4
+        yield "    <h1>Posts in \"";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["category"] ?? null), "html", null, true);
-        yield "</title>
-</head>
-<body>
-    <h1>Posts in ";
-        // line 9
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["category"] ?? null), "html", null, true);
-        yield "</h1>
+        yield "\"</h1>
 
     ";
-        // line 11
+        // line 6
         if (Twig\Extension\CoreExtension::testEmpty(($context["posts"] ?? null))) {
-            // line 12
+            // line 7
             yield "        <p>No posts found in this category.</p>
     ";
         } else {
-            // line 14
+            // line 9
             yield "        <ul>
         ";
-            // line 15
+            // line 10
             $context['_parent'] = $context;
             $context['_seq'] = CoreExtension::ensureTraversable(($context["posts"] ?? null));
             foreach ($context['_seq'] as $context["_key"] => $context["post"]) {
-                // line 16
+                // line 11
                 yield "            <li>
                 <a href=\"/post/";
-                // line 17
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "slug", [], "any", false, false, false, 17), "html", null, true);
+                // line 12
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "slug", [], "any", false, false, false, 12), "html", null, true);
                 yield "\">";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "title", [], "any", false, false, false, 17), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "title", [], "any", false, false, false, 12), "html", null, true);
                 yield "</a>
-                <p><strong>By:</strong> ";
-                // line 18
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "author", [], "any", false, false, false, 18), "html", null, true);
-                yield " | <strong>Date:</strong> ";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "date", [], "any", false, false, false, 18), "html", null, true);
-                yield "</p>
+                <small>by ";
+                // line 13
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "author", [], "any", false, false, false, 13), "html", null, true);
+                yield " on ";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "date", [], "any", false, false, false, 13), "html", null, true);
+                yield "</small>
             </li>
         ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['post'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 21
+            // line 16
             yield "        </ul>
     ";
         }
-        // line 23
-        yield "</body>
-</html>
-";
         yield from [];
     }
 
@@ -121,20 +121,15 @@ class __TwigTemplate_dfb02b99610bf44d314036c7b9439d8266f88868b99aaa2f72bae4dc93a
      */
     public function getDebugInfo(): array
     {
-        return array (  97 => 23,  93 => 21,  82 => 18,  76 => 17,  73 => 16,  69 => 15,  66 => 14,  62 => 12,  60 => 11,  55 => 9,  49 => 6,  42 => 1,);
+        return array (  97 => 16,  86 => 13,  80 => 12,  77 => 11,  73 => 10,  70 => 9,  66 => 7,  64 => 6,  58 => 4,  51 => 3,  40 => 1,);
     }
 
     public function getSourceContext(): Source
     {
-        return new Source("<!DOCTYPE html>
-<html lang=\"en\">
-<head>
-    <meta charset=\"UTF-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <title>Posts in {{ category }}</title>
-</head>
-<body>
-    <h1>Posts in {{ category }}</h1>
+        return new Source("{% extends \"base.twig.html\" %}
+
+{% block content %}
+    <h1>Posts in \"{{ category }}\"</h1>
 
     {% if posts is empty %}
         <p>No posts found in this category.</p>
@@ -143,13 +138,12 @@ class __TwigTemplate_dfb02b99610bf44d314036c7b9439d8266f88868b99aaa2f72bae4dc93a
         {% for post in posts %}
             <li>
                 <a href=\"/post/{{ post.slug }}\">{{ post.title }}</a>
-                <p><strong>By:</strong> {{ post.author }} | <strong>Date:</strong> {{ post.date }}</p>
+                <small>by {{ post.author }} on {{ post.date }}</small>
             </li>
         {% endfor %}
         </ul>
     {% endif %}
-</body>
-</html>
+{% endblock %}
 ", "category.twig.html", "C:\\Users\\jemer\\WebProjects\\PebbleCMS\\themes\\default\\category.twig.html");
     }
 }

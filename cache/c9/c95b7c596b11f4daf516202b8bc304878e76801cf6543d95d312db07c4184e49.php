@@ -29,37 +29,42 @@ class __TwigTemplate_9de820eeb9e9d7821e11e05d29426d48527ecbf4be384f77b26caae5d61
 
         $this->source = $this->getSourceContext();
 
-        $this->parent = false;
-
         $this->blocks = [
+            'content' => [$this, 'block_content'],
         ];
+    }
+
+    protected function doGetParent(array $context): bool|string|Template|TemplateWrapper
+    {
+        // line 1
+        return "base.twig.html";
     }
 
     protected function doDisplay(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        // line 1
-        yield "<!DOCTYPE html>
-<html lang=\"en\">
-<head>
-    <meta charset=\"UTF-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <title>";
-        // line 6
-        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["title"] ?? null), "html", null, true);
-        yield "</title>
-</head>
-<body>
-    <h1>";
-        // line 9
+        $this->parent = $this->loadTemplate("base.twig.html", "page.twig.html", 1);
+        yield from $this->parent->unwrap()->yield($context, array_merge($this->blocks, $blocks));
+    }
+
+    // line 3
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
+    public function block_content(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        // line 4
+        yield "    <article>
+        <h1>";
+        // line 5
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["title"] ?? null), "html", null, true);
         yield "</h1>
-    <p>";
-        // line 10
+        <div>";
+        // line 6
         yield ($context["content"] ?? null);
-        yield "</p>
-</body>
-</html>
+        yield "</div>
+    </article>
 ";
         yield from [];
     }
@@ -85,23 +90,19 @@ class __TwigTemplate_9de820eeb9e9d7821e11e05d29426d48527ecbf4be384f77b26caae5d61
      */
     public function getDebugInfo(): array
     {
-        return array (  59 => 10,  55 => 9,  49 => 6,  42 => 1,);
+        return array (  65 => 6,  61 => 5,  58 => 4,  51 => 3,  40 => 1,);
     }
 
     public function getSourceContext(): Source
     {
-        return new Source("<!DOCTYPE html>
-<html lang=\"en\">
-<head>
-    <meta charset=\"UTF-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
-    <title>{{ title }}</title>
-</head>
-<body>
-    <h1>{{ title }}</h1>
-    <p>{{ content | raw }}</p>
-</body>
-</html>
+        return new Source("{% extends \"base.twig.html\" %}
+
+{% block content %}
+    <article>
+        <h1>{{ title }}</h1>
+        <div>{{ content|raw }}</div>
+    </article>
+{% endblock %}
 ", "page.twig.html", "C:\\Users\\jemer\\WebProjects\\PebbleCMS\\themes\\default\\page.twig.html");
     }
 }
