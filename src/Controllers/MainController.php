@@ -26,52 +26,11 @@ class MainController extends BaseController
     }
     public function page($slug)
     {       
-        $data = $this->pagesLoader->loadContentBySlug($slug);
+        //$data = $this->pagesLoader->loadContentBySlug($slug);
 
-        $data === null ? $this->Handle404($slug) : $this->renderer->render($data['template'], array_merge($data, ["categories" => $this->GetCategories()]));
-    }
-    public function post($slug)
-    {
-        $data = $this->postsLoader->loadContentBySlug($slug);
-
-        $data === null ? $this->Handle404($slug) : $this->renderer->render($data['template'], array_merge($data, ["categories" => $this->GetCategories()]));
-
-    }
-    /**
-     * Gets all of the posts by category
-     */
-    public function category($slug)
-    {
-        $data = $this->postsLoader->getPostsByCategory($slug);
-
-        $data === null ? $this->Handle404($slug) : $this->renderer->render('category', ["posts" => $data, "category" => $slug, "categories" => $this->GetCategories()]);
+        //$data === null ? $this->Handle404($slug) : $this->renderer->render($data['template'], array_merge($data, ["categories" => $this->GetCategories()]));
     }
 
-    /**
-     * Gets all of the categories
-     */
-    public function categories()
-    {
-        $data = $this->postsLoader->getAllCategories();
-
-        $data === null ? $this->Handle404("Categories") : $this->renderer->render('categories', ["posts" => $data, "categories" => $data]);
-
-        // echo "Categories: <br/>";
-
-        // foreach ($data as $cat) 
-        // {
-        //     echo $cat . "<br/>";
-        // }
-    }
-    protected function Handle404($page)
-    {
-        $this->renderer->render('404', ["slug" => $page]);
-    }
-
-    private function GetCategories() : array
-    {
-        return $this->postsLoader->getAllCategories();
-    }
 }
 
 ?>
