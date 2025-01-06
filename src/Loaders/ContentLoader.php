@@ -1,6 +1,6 @@
 <?php
 
-namespace Jemer\PebbleCms;
+namespace Jemer\PebbleCms\Loaders;
 
 use League\CommonMark\CommonMarkConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;

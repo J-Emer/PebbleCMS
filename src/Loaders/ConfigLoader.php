@@ -1,6 +1,6 @@
 <?php
 
-namespace Jemer\PebbleCms;
+namespace Jemer\PebbleCms\Loaders;
 
 use Symfony\Component\Yaml\Yaml;
 use Symfony\Component\Filesystem\Filesystem;

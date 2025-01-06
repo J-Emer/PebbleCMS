@@ -1,6 +1,6 @@
 <?php
 
-namespace Jemer\PebbleCms;
+namespace Jemer\PebbleCms\Loaders;
 
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
