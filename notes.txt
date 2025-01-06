@@ -1,0 +1,5 @@
+
+Todo: 
+    [] TemplateRenderer.php should be able to load in the admin 
+        templates and the theme templates. Needs to take in the
+        desired templates path as a constructor arg
