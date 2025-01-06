@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ site_name }} - Admin Area</title>
+    <link rel="stylesheet" href="{{ admin_css('admin.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{{ site_name }} Admin</h1>
+        <nav>
+            <ul>
+                <li><a href="/admin/dashboard">Dashboard</a></li>
+                <li><a href="/admin/posts">Posts</a></li>
+                <li><a href="/admin/pages">Pages</a></li>
+                <li><a href="/admin/settings">Settings</a></li>
+                <li><a href="/admin/users">Users</a></li>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; {{ "now"|date("Y") }} {{ site_name }}. All rights reserved.</p>
+    </footer>
+</body>
+</html>

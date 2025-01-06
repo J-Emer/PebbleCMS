@@ -29,6 +29,13 @@ class PebbleRouter
         });
 
         //todo: add in admin routes
+
+        $this->router->get('/admin/dashboard', 'AdminController@dashboard');
+        $this->router->get('/admin/posts', 'AdminController@posts');
+        $this->router->get('/admin/pages', 'AdminController@pages');
+        $this->router->get('/admin/settings', 'AdminController@settings');
+        $this->router->get('/admin/users', 'AdminController@users');
+
     }
 
     public function run()
