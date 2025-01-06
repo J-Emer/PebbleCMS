@@ -26,13 +26,13 @@ Folder Structure:
 
 
 Required Files: 
-    [] TemplateRenderer.php -> will render our twig files
+    [x] TemplateRenderer.php -> will render our twig files
     [x] ContentLoader.php -> loads the specified content file 
             and returns an array of key/value pairs
     [x] ConfigLoader.php -> loads the config.yaml files
     [x] Bootstrap.php -> holds all of the defines
     [] PebbleRouter -> holds all of the routing info
-    [] App -> 
+    [x] App -> 
         * will manage whole project
         * singleton class, will initialize resources that can
             be referenced later on by other systems 
@@ -45,3 +45,5 @@ Todo:
             is setting debug = true. When the app is running in development
             mode this is fine, but when it switches to production mode, we 
             need to turn this set debug = false
+    [] MainController->Categories: need to build a categories page so we can 
+            see all avaliable categories. 

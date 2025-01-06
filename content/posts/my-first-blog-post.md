@@ -3,7 +3,7 @@ title: "My First Blog Post"
 template: post
 author: "John Doe"
 date: "2025-01-05"
-category: "Announcements"
+category: "announcements"
 keywords: ["first post", "blog", "announcement"]
 slug: "my-first-blog-post"
 ---

@@ -2,6 +2,7 @@
 
 namespace Jemer\PebbleCms;
 
+use Jemer\PebbleCms\Loaders\ConfigLoader;
 
 class App
 {
@@ -48,12 +49,6 @@ class App
         return static::$instance;
     }
 
-    /**
-     * Get the configuration value by key.
-     *
-     * @param string $key
-     * @return mixed|null
-     */
     public function getConfig(string $key)
     {
         return $this->configLoader->get($key);

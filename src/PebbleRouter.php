@@ -21,7 +21,12 @@ class PebbleRouter
         $this->router->get("/", "MainController@index");
         $this->router->get("/post/{slug}", "MainController@post");
         $this->router->get("/page/{slug}", "MainController@page");
-        $this->router->get("/cagegory/{slug}", "MainController@category");
+        $this->router->get("/category/{slug}", "MainController@category");
+        $this->router->get("/categories", "MainController@categories");
+
+        $this->router->set404(function() {
+            echo "404 - Page Not Found";  // Simple 404 message
+        });
 
         //todo: add in admin routes
     }

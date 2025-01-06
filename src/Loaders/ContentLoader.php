@@ -2,6 +2,7 @@
 
 namespace Jemer\PebbleCms\Loaders;
 
+use Jemer\PebbleCms\Loggers\ScreenLogger;
 use League\CommonMark\CommonMarkConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Symfony\Component\Filesystem\Filesystem;
@@ -21,19 +22,13 @@ class ContentLoader
     }
 
 
-    /**
-     * Loads a page's content by its slug and returns all front-matter and content in a single array.
-     *
-     * @param string $slug The slug of the page (e.g., 'home', 'about', etc.)
-     * @return array The combined front-matter and content of the page.
-     * @throws \Exception If the content file does not exist or cannot be read.
-     */
+
     public function loadContentBySlug(string $slug)
     {
         $filePath = $this->getFilePathBySlug($slug);
         
         if (!$this->filesystem->exists($filePath)) {
-            throw new \Exception("Content file for slug '{$slug}' does not exist. Looked in: {$this->contentDirectory}");
+           return null;
         }
 
         $frontMatter = YamlFrontMatter::parseFile($filePath);
@@ -78,4 +73,44 @@ class ContentLoader
 
         return $slugs;
     }
+
+    public function getPostsByCategory(string $category)
+    {
+        $posts = [];
+    
+        // Get all Markdown files (slugs)
+        $slugs = $this->getAllSlugs();
+    
+        foreach ($slugs as $slug) {
+            $data = $this->loadContentBySlug($slug);
+            
+            // Check if the category matches
+            if (isset($data['category']) && $data['category'] === $category) {
+                $posts[] = $data;  // Add matching post to the list
+            }
+        }
+    
+        return $posts;
+    }
+
+    public function getAllCategories()
+    {
+        $categories = [];
+    
+        // Get all slugs (Markdown files)
+        $slugs = $this->getAllSlugs();
+    
+        foreach ($slugs as $slug) {
+            $data = $this->loadContentBySlug($slug);
+            
+            // If a category is set in the front matter, add it to the list
+            if (isset($data['category']) && !in_array($data['category'], $categories)) {
+                $categories[] = $data['category'];
+            }
+        }
+    
+        return $categories;
+    }
+
+
 }
