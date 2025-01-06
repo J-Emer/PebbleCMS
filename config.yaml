@@ -1,0 +1,57 @@
+#State settings
+state: "development" # can be either development or production
+
+# Site Settings
+site:
+  name: "My Flat-File CMS"
+  description: "A lightweight CMS using Markdown files and PHP"
+  base_url: "http://localhost"  # Update to your site's URL
+  theme: "default"             # The active theme (matches a folder in /themes)
+  homepage: "home"
+  
+# Cache Settings
+cache:
+  enabled: true                # Enable or disable caching
+  directory: "/cache"          # Relative path to cache directory
+
+# Content Settings
+content:
+  pages: 
+    directory: "/content/pages"
+    default_template: "page"        # Default content type if none specified
+  posts:
+    directory: "/content/posts" # Directory for blog posts
+    per_page: 5                # Number of posts to display per page
+    order: "desc"              # Order of posts (asc or desc by date)
+    date_format: "Y-m-d"       # Date format for displaying post dates
+    default_template: "post"   # Default template for rendering posts
+
+# SEO Defaults
+seo:
+  meta_title: "My Flat-File CMS"
+  meta_description: "This is a flat-file CMS using PHP and Markdown."
+  meta_keywords: ["cms", "flat-file", "php", "markdown"]
+
+# Markdown Settings
+markdown:
+  enabled_extensions:          # List of Markdown extensions to enable
+    - "table"                  # Example extension: Markdown tables
+    - "task_list"              # Task lists
+
+# Theme Settings
+theme:
+  assets:
+    css: "/themes/{{ theme }}/style.css"
+    js: "/themes/{{ theme }}/scripts.js"
+
+# Debug Settings
+debug:
+  enabled: false               # Enable or disable debug mode
+  display_errors: false        # Display errors on the frontend
+
+# Database Settings (optional, for plugins or extensions)
+database:
+  enabled: false               # Enable only if extensions require it
+  driver: "sqlite"             # Database driver (e.g., sqlite, mysql)
+  path: "/data/cms.sqlite"     # Database file for SQLite
+

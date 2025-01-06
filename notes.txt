@@ -1,5 +1,47 @@
+Folder Structure: 
+
+    FlatFileCMS/                 # Root of the CMS
+    ├── /content                 # Markdown content files
+    │   ├── posts/
+    │   ├── pages/
+    ├── /themes                  # Themes for the CMS
+    │   ├── default/
+    │       ├── templates/
+    │       ├── style.css
+    │       ├── scripts.js
+    ├── /cache                   # Cache for rendered content (optional)
+    ├── /public                  # Public assets
+    │   ├── assets/              # Static assets like images, fonts, etc.
+    │       ├── logo.png
+    ├── /src                     # Core PHP logic
+    │   ├── /Controllers
+    │   ├── /Models
+    │   ├── FlatFileCMS.php
+    ├── /vendor                  # Composer dependencies
+    ├── config.yaml              # CMS configuration
+    ├── index.php                # Main entry point
+    ├── .htaccess                # Optional Apache rewrite rules
+    ├── README.md                # Project documentation
+
+
+
+Required Files: 
+    [] TemplateRenderer.php -> will render our twig files
+    [x] ContentLoader.php -> loads the specified content file 
+            and returns an array of key/value pairs
+    [x] ConfigLoader.php -> loads the config.yaml files
+    [x] Bootstrap.php -> holds all of the defines
+    [] PebbleRouter -> holds all of the routing info
+    [] App -> 
+        * will manage whole project
+        * singleton class, will initialize resources that can
+            be referenced later on by other systems 
+        * loads and runs the PebbleRouter
+    [x] PathHelper -> helps with path manipulation
+
 
 Todo: 
-    [] TemplateRenderer.php should be able to load in the admin 
-        templates and the theme templates. Needs to take in the
-        desired templates path as a constructor arg
+    [] TemplateRenderer: when loading the twig enviroment it currently
+            is setting debug = true. When the app is running in development
+            mode this is fine, but when it switches to production mode, we 
+            need to turn this set debug = false

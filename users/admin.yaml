@@ -1,0 +1,11 @@
+# User Configuration
+username: "admin"                 # Username for the user
+password: "$2y$10$xxxxxxxxxx"     # Hashed password (bcrypt or other secure hash)
+roles:                            # User roles (e.g., admin, editor)
+  - "admin"
+email: "admin@example.com"        # User email address
+created_at: "2025-01-05"          # Account creation date
+metadata:                         # Additional metadata for the user
+  full_name: "Admin User"
+  bio: "Administrator of the CMS"
+  last_login: "2025-01-04 14:32:00"
