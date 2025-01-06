@@ -15,7 +15,7 @@ class AdminController extends BaseController
     public function __construct()
     {
         parent::__construct();
-        $this->renderer = new TemplateRenderer(THEMES_DIR . "/default");
+        $this->renderer = new TemplateRenderer(ADMIN_DIR);
         $this->usersLoader = new UsersLoader();
     }
 

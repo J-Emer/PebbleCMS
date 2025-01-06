@@ -2,7 +2,6 @@
 
 namespace Jemer\PebbleCms\Loaders;
 
-use Jemer\PebbleCms\TwigExtensions\AdminAssetsExtension;
 use Jemer\PebbleCms\TwigExtensions\AssetExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
@@ -35,7 +34,6 @@ class TemplateRenderer
         ]);
 
         $this->twig->addExtension(new AssetExtension());
-        $this->twig->addExtension(new AdminAssetsExtension());
     }
 
     /**
