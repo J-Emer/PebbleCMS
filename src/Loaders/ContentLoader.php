@@ -2,11 +2,12 @@
 
 namespace Jemer\PebbleCms\Loaders;
 
+use Jemer\PebbleCms\Loggers\ScreenLog;
 use Jemer\PebbleCms\Loggers\ScreenLogger;
 use League\CommonMark\CommonMarkConverter;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
 use Symfony\Component\Filesystem\Filesystem;
-
+use Symfony\Component\Yaml\Yaml;
 
 class ContentLoader
 {
@@ -21,14 +22,20 @@ class ContentLoader
         $this->markdownConverter = new CommonMarkConverter();
     }
 
-
-
+    /**
+     * Loads a page's content by its slug and returns all front-matter and content in a single array.
+     *
+     * @param string $slug The slug of the page (e.g., 'home', 'about', etc.)
+     * @return array The combined front-matter and content of the page.
+     * @throws \Exception If the content file does not exist or cannot be read.
+     */
     public function loadContentBySlug(string $slug)
     {
         $filePath = $this->getFilePathBySlug($slug);
         
         if (!$this->filesystem->exists($filePath)) {
-           return null;
+            ScreenLog::log(__FILE__, "Content file for slug {$slug} could not be found. Looked in {$this->contentDirectory}");
+            return null; // Returning null to indicate the file was not found
         }
 
         $frontMatter = YamlFrontMatter::parseFile($filePath);
@@ -53,6 +60,48 @@ class ContentLoader
     }
 
     /**
+     * Retrieves all available posts slugs (filenames without the extension) in the posts directory.
+     *
+     * @return array List of posts slugs.
+     */
+    public function getAllPosts() : array
+    {
+        return $this->getAllContentFromDirectory($this->contentDirectory . DIRECTORY_SEPARATOR . 'posts');
+    }
+
+    /**
+     * Retrieves all available pages slugs (filenames without the extension) in the pages directory.
+     *
+     * @return array List of pages slugs.
+     */
+    public function getAllPages() : array
+    {
+        return $this->getAllContentFromDirectory($this->contentDirectory . DIRECTORY_SEPARATOR . 'pages');
+    }
+
+    /**
+     * Helper function to get all slugs (filenames without extension) in a directory.
+     *
+     * @param string $directory The directory to scan.
+     * @return array List of content slugs.
+     */
+    private function getAllContentFromDirectory(string $directory) : array
+    {
+        $content = [];
+        
+        if ($this->filesystem->exists($directory)) {
+            $files = scandir($directory);
+            foreach ($files as $file) {
+                if ($file !== '.' && $file !== '..' && pathinfo($file, PATHINFO_EXTENSION) === 'md') {
+                    $content[] = pathinfo($file, PATHINFO_FILENAME);
+                }
+            }
+        }
+
+        return $content;
+    }
+
+    /**
      * Retrieves all available slugs (page filenames without the extension) in the content directory.
      *
      * @return array List of slugs.
@@ -74,43 +123,38 @@ class ContentLoader
         return $slugs;
     }
 
-    public function getPostsByCategory(string $category)
-    {
-        $posts = [];
-    
-        // Get all Markdown files (slugs)
-        $slugs = $this->getAllSlugs();
-    
-        foreach ($slugs as $slug) {
-            $data = $this->loadContentBySlug($slug);
-            
-            // Check if the category matches
-            if (isset($data['category']) && $data['category'] === $category) {
-                $posts[] = $data;  // Add matching post to the list
-            }
-        }
-    
-        return $posts;
-    }
-
     public function getAllCategories()
     {
         $categories = [];
-    
-        // Get all slugs (Markdown files)
-        $slugs = $this->getAllSlugs();
-    
-        foreach ($slugs as $slug) {
-            $data = $this->loadContentBySlug($slug);
-            
-            // If a category is set in the front matter, add it to the list
-            if (isset($data['category']) && !in_array($data['category'], $categories)) {
-                $categories[] = $data['category'];
+        $files = scandir($this->contentDirectory);
+
+        foreach ($files as $file) {
+            if ($file !== '.' && $file !== '..' && pathinfo($file, PATHINFO_EXTENSION) === 'md') {
+                $postData = Yaml::parseFile($this->contentDirectory . DIRECTORY_SEPARATOR . $file);
+                if (isset($postData['category'])) {
+                    $categories = array_merge($categories, $postData['category']);
+                }
             }
         }
-    
-        return $categories;
+
+        // Remove duplicates and return the categories
+        return array_values(array_unique($categories));
     }
 
+    public function getPostsByCategory(string $slug)
+    {
+        $posts = [];
+        $files = scandir($this->contentDirectory);
 
+        foreach ($files as $file) {
+            if ($file !== '.' && $file !== '..' && pathinfo($file, PATHINFO_EXTENSION) === 'md') {
+                $postData = Yaml::parseFile($this->contentDirectory . DIRECTORY_SEPARATOR . $file);
+                if (in_array($slug, $postData['category'] ?? [])) {
+                    $posts[] = $postData;
+                }
+            }
+        }
+
+        return !empty($posts) ? $posts : null; // Return posts belonging to the category
+    }
 }
