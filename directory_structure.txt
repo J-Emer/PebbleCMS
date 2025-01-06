@@ -1,0 +1,47 @@
+    .gitattributes
+    .gitignore
+    .htaccess
+    LICENSE
+    README.md
+/_admin/
+    composer.json
+    composer.lock
+    config.yaml
+/content/
+    /pages/
+            about.md
+            contact.md
+            home.md
+    /posts/
+            exciting-feature.md
+            my-first-blog-post.md
+            platform-updates.md
+    directory_structure.txt
+    index.php
+    notes.txt
+/public/
+    save_structure.php
+/src/
+        App.php
+        Bootstrap.php
+    /Controllers/
+            BaseController.php
+            MainController.php
+    /Loaders/
+            ConfigLoader.php
+            ContentLoader.php
+            TemplateRenderer.php
+    /Loggers/
+            ScreenLogger.php
+        PathHelper.php
+        PebbleRouter.php
+/themes/
+    /default/
+            404.twig.html
+            base.twig.html
+            categories.twig.html
+            category.twig.html
+            page.twig.html
+            post.twig.html
+/users/
+        admin.yaml

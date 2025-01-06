@@ -5,7 +5,7 @@ state: "development" # can be either development or production
 site:
   name: "My Flat-File CMS"
   description: "A lightweight CMS using Markdown files and PHP"
-  base_url: "http://localhost"  # Update to your site's URL
+  base_url: "http://localhost:8000"  # Update to your site's URL
   theme: "default"             # The active theme (matches a folder in /themes)
   homepage: "home"
   

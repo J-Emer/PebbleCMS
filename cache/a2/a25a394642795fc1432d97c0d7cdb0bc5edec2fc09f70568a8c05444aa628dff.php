@@ -15,7 +15,7 @@ use Twig\Template;
 use Twig\TemplateWrapper;
 
 /* base.twig.html */
-class __TwigTemplate_5a5045756da10353bf2ab8ddc3ca112411ceb3173cd89beb9103ad32ef703819 extends Template
+class __TwigTemplate_5755c51bf2d3eab76a7d7fb4be18cad6c5ea824f159919c6f526a4e938058b64 extends Template
 {
     private Source $source;
     /**
@@ -49,25 +49,32 @@ class __TwigTemplate_5a5045756da10353bf2ab8ddc3ca112411ceb3173cd89beb9103ad32ef7
         // line 6
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["title"] ?? null), "html", null, true);
         yield "</title>
-    <link rel=\"stylesheet\" href=\"/admin_templates/style.css\">
+    <link rel=\"stylesheet\" href=\"";
+        // line 7
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Jemer\PebbleCms\TwigExtensions\AssetExtension']->getCssUrl("style.css"), "html", null, true);
+        yield "\">
+    <script src=\"";
+        // line 8
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Jemer\PebbleCms\TwigExtensions\AssetExtension']->getJsUrl("main.js"), "html", null, true);
+        yield "\"></script>
 </head>
 <body>
     <header>
-        <h1><a href=\"/\">My CMS</a></h1>
+        <h1><a href=\"/\">Pebble CMS</a></h1>
         <nav>
             <ul>
                 <li><a href=\"/\">Home</a></li>
                 <li><a href=\"/page/about\">About</a></li>
                 <li><a href=\"/page/contact\">Contact</a></li>
                 ";
-        // line 17
+        // line 18
         if ((array_key_exists("categories", $context) &&  !Twig\Extension\CoreExtension::testEmpty(($context["categories"] ?? null)))) {
-            // line 18
+            // line 19
             yield "                    ";
             $context['_parent'] = $context;
             $context['_seq'] = CoreExtension::ensureTraversable(($context["categories"] ?? null));
             foreach ($context['_seq'] as $context["_key"] => $context["category"]) {
-                // line 19
+                // line 20
                 yield "                        <li><a href=\"/category/";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["category"], "html", null, true);
                 yield "\">";
@@ -78,24 +85,24 @@ class __TwigTemplate_5a5045756da10353bf2ab8ddc3ca112411ceb3173cd89beb9103ad32ef7
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['category'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 21
+            // line 22
             yield "                ";
         }
-        // line 22
+        // line 23
         yield "            </ul>
         </nav>
     </header>
     <main>
         ";
-        // line 26
-        yield from $this->unwrap()->yieldBlock('content', $context, $blocks);
         // line 27
+        yield from $this->unwrap()->yieldBlock('content', $context, $blocks);
+        // line 28
         yield "    </main>
     <footer>
         <p>&copy; ";
-        // line 29
+        // line 30
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate("now", "Y"), "html", null, true);
-        yield " My CMS</p>
+        yield " PebbleCMS</p>
     </footer>
 </body>
 </html>
@@ -103,7 +110,7 @@ class __TwigTemplate_5a5045756da10353bf2ab8ddc3ca112411ceb3173cd89beb9103ad32ef7
         yield from [];
     }
 
-    // line 26
+    // line 27
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -134,7 +141,7 @@ class __TwigTemplate_5a5045756da10353bf2ab8ddc3ca112411ceb3173cd89beb9103ad32ef7
      */
     public function getDebugInfo(): array
     {
-        return array (  107 => 26,  97 => 29,  93 => 27,  91 => 26,  85 => 22,  82 => 21,  71 => 19,  66 => 18,  64 => 17,  50 => 6,  43 => 1,);
+        return array (  114 => 27,  104 => 30,  100 => 28,  98 => 27,  92 => 23,  89 => 22,  78 => 20,  73 => 19,  71 => 18,  58 => 8,  54 => 7,  50 => 6,  43 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -145,11 +152,12 @@ class __TwigTemplate_5a5045756da10353bf2ab8ddc3ca112411ceb3173cd89beb9103ad32ef7
     <meta charset=\"UTF-8\">
     <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">
     <title>{{ title }}</title>
-    <link rel=\"stylesheet\" href=\"/admin_templates/style.css\">
+    <link rel=\"stylesheet\" href=\"{{ css('style.css') }}\">
+    <script src=\"{{ js('main.js') }}\"></script>
 </head>
 <body>
     <header>
-        <h1><a href=\"/\">My CMS</a></h1>
+        <h1><a href=\"/\">Pebble CMS</a></h1>
         <nav>
             <ul>
                 <li><a href=\"/\">Home</a></li>
@@ -167,7 +175,7 @@ class __TwigTemplate_5a5045756da10353bf2ab8ddc3ca112411ceb3173cd89beb9103ad32ef7
         {% block content %}{% endblock %}
     </main>
     <footer>
-        <p>&copy; {{ \"now\"|date(\"Y\") }} My CMS</p>
+        <p>&copy; {{ \"now\"|date(\"Y\") }} PebbleCMS</p>
     </footer>
 </body>
 </html>

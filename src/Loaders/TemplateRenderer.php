@@ -2,6 +2,7 @@
 
 namespace Jemer\PebbleCms\Loaders;
 
+use Jemer\PebbleCms\TwigExtensions\AssetExtension;
 use Twig\Loader\FilesystemLoader;
 use Twig\Environment;
 use Twig\Error\LoaderError;
@@ -31,6 +32,8 @@ class TemplateRenderer
             'cache' => ROOT_DIR . '/cache', 
             'debug' => true,  
         ]);
+
+        $this->twig->addExtension(new AssetExtension());
     }
 
     /**

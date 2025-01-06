@@ -14,8 +14,8 @@ use Twig\Source;
 use Twig\Template;
 use Twig\TemplateWrapper;
 
-/* page.twig.html */
-class __TwigTemplate_9de820eeb9e9d7821e11e05d29426d48527ecbf4be384f77b26caae5d61968ae extends Template
+/* post.twig.html */
+class __TwigTemplate_8d0c8a68764fb52ff01abb82cb1cb814521f1e3953696ef28ddbc01bb7219cb7 extends Template
 {
     private Source $source;
     /**
@@ -43,7 +43,7 @@ class __TwigTemplate_9de820eeb9e9d7821e11e05d29426d48527ecbf4be384f77b26caae5d61
     protected function doDisplay(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
-        $this->parent = $this->loadTemplate("base.twig.html", "page.twig.html", 1);
+        $this->parent = $this->loadTemplate("base.twig.html", "post.twig.html", 1);
         yield from $this->parent->unwrap()->yield($context, array_merge($this->blocks, $blocks));
     }
 
@@ -60,8 +60,28 @@ class __TwigTemplate_9de820eeb9e9d7821e11e05d29426d48527ecbf4be384f77b26caae5d61
         // line 5
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["title"] ?? null), "html", null, true);
         yield "</h1>
+        <p>
+            By ";
+        // line 7
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["author"] ?? null), "html", null, true);
+        yield " on ";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["date"] ?? null), "html", null, true);
+        yield "
+            ";
+        // line 8
+        if (($context["category"] ?? null)) {
+            // line 9
+            yield "                in <a href=\"/category/";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["category"] ?? null), "html", null, true);
+            yield "\">";
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["category"] ?? null), "html", null, true);
+            yield "</a>
+            ";
+        }
+        // line 11
+        yield "        </p>
         <div>";
-        // line 6
+        // line 12
         yield ($context["content"] ?? null);
         yield "</div>
     </article>
@@ -74,7 +94,7 @@ class __TwigTemplate_9de820eeb9e9d7821e11e05d29426d48527ecbf4be384f77b26caae5d61
      */
     public function getTemplateName(): string
     {
-        return "page.twig.html";
+        return "post.twig.html";
     }
 
     /**
@@ -90,7 +110,7 @@ class __TwigTemplate_9de820eeb9e9d7821e11e05d29426d48527ecbf4be384f77b26caae5d61
      */
     public function getDebugInfo(): array
     {
-        return array (  65 => 6,  61 => 5,  58 => 4,  51 => 3,  40 => 1,);
+        return array (  85 => 12,  82 => 11,  74 => 9,  72 => 8,  66 => 7,  61 => 5,  58 => 4,  51 => 3,  40 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -100,9 +120,15 @@ class __TwigTemplate_9de820eeb9e9d7821e11e05d29426d48527ecbf4be384f77b26caae5d61
 {% block content %}
     <article>
         <h1>{{ title }}</h1>
+        <p>
+            By {{ author }} on {{ date }}
+            {% if category %}
+                in <a href=\"/category/{{ category }}\">{{ category }}</a>
+            {% endif %}
+        </p>
         <div>{{ content|raw }}</div>
     </article>
 {% endblock %}
-", "page.twig.html", "C:\\Users\\jemer\\WebProjects\\PebbleCMS\\themes\\default\\page.twig.html");
+", "post.twig.html", "C:\\Users\\jemer\\WebProjects\\PebbleCMS\\themes\\default\\post.twig.html");
     }
 }

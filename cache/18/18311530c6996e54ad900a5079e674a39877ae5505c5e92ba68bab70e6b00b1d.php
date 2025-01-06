@@ -15,7 +15,7 @@ use Twig\Template;
 use Twig\TemplateWrapper;
 
 /* category.twig.html */
-class __TwigTemplate_dfb02b99610bf44d314036c7b9439d8266f88868b99aaa2f72bae4dc93aa7a10 extends Template
+class __TwigTemplate_40e8056394ba23e51a62c8be6f5c7c6e71eec7c9f07432948c09f2c6b443493b extends Template
 {
     private Source $source;
     /**
