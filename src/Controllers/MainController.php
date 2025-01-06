@@ -5,6 +5,9 @@ namespace Jemer\PebbleCms\Controllers;
 use Jemer\PebbleCms\App;
 use Jemer\PebbleCms\Loaders\ContentLoader;
 use Jemer\PebbleCms\Loaders\TemplateRenderer;
+use Jemer\PebbleCms\Loggers\DebugLog;
+use Jemer\PebbleCms\Loggers\ErrorLog;
+use Jemer\PebbleCms\Loggers\ScreenLog;
 
 class MainController extends BaseController
 {
