@@ -3,7 +3,6 @@
     .htaccess
     LICENSE
     README.md
-/_admin/
     composer.json
     composer.lock
     config.yaml
@@ -13,8 +12,10 @@
             contact.md
             home.md
     /posts/
+        /category 1/
             exciting-feature.md
             my-first-blog-post.md
+        /category 2/
             platform-updates.md
     directory_structure.txt
     index.php
@@ -22,26 +23,15 @@
 /public/
     save_structure.php
 /src/
-        App.php
-        Bootstrap.php
-    /Controllers/
-            BaseController.php
-            MainController.php
-    /Loaders/
-            ConfigLoader.php
-            ContentLoader.php
-            TemplateRenderer.php
-    /Loggers/
-            ScreenLogger.php
-        PathHelper.php
-        PebbleRouter.php
 /themes/
     /default/
             404.twig.html
             base.twig.html
             categories.twig.html
             category.twig.html
+        /css/
+                style.css
+        /js/
+                main.js
             page.twig.html
             post.twig.html
-/users/
-        admin.yaml

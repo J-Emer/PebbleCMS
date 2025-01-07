@@ -1,17 +1,24 @@
 <?php
 
-use Jemer\PebbleCms\App;
-use Jemer\PebbleCms\ConfigLoader;
-use Jemer\PebbleCms\ContentLoader;
-use Jemer\PebbleCms\PathHelper;
-use Jemer\PebbleCms\TemplateRenderer;
+use Jemer\PebbleCms\Loaders\ContentLoader;
 
 require "vendor/autoload.php";
 require "src/Bootstrap.php";
 
+$contentLoader = new ContentLoader(__DIR__ . "/content");
+$data = $contentLoader->loadContent('platform-updates');
 
-$app = App::getInstance();
-$app->run();
+echo 'Title: ' . $data['metadata']['title'] . "\n";
+echo 'Template: ' . $data['metadata']['template'] . "\n";
+echo 'Slug: ' . $data['metadata']['slug'] . "\n";
+echo 'Category: ' . $data['metadata']['category'] . "\n";
+
+echo 'Content: ' . $data['content'] . "\n";
+
+
+echo "------------------------------------------------";
+
+var_dump($contentLoader->getCategories());
 
 
 ?>
