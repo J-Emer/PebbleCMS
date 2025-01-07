@@ -43,6 +43,7 @@ theme:
   assets:
     css: "/themes/{{ theme }}/style.css"
     js: "/themes/{{ theme }}/scripts.js"
+  name: "default"
 
 # Debug Settings
 debug:

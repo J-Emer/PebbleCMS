@@ -127,4 +127,26 @@ class ContentLoader
 
         return $categories;
     }
+
+    public function getPostsByCategory(string $category): array
+    {
+        $categoryDir = $this->baseDir . DIRECTORY_SEPARATOR . 'posts' . DIRECTORY_SEPARATOR . $category;
+
+        if (!$this->filesystem->exists($categoryDir) || !is_dir($categoryDir)) {
+            throw new \Exception("Category '{$category}' not found.");
+        }
+
+        $posts = [];
+        $iterator = new \DirectoryIterator($categoryDir);
+        foreach ($iterator as $fileInfo) {
+            if ($fileInfo->isFile() && $fileInfo->getExtension() === 'md') {
+                // Load and parse the post
+                $filePath = $fileInfo->getRealPath();
+                $postData = $this->parseFile($filePath);
+                $posts[] = $postData;
+            }
+        }
+
+        return $posts;
+    }
 }
