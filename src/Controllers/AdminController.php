@@ -38,6 +38,10 @@ class AdminController extends BaseController
     {
         $this->templateLoader->Render('settings', []);
     }  
+    public function newpost()
+    {
+        $this->templateLoader->Render('newpost', []);
+    }  
 }
 
 ?>
