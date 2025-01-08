@@ -8,10 +8,11 @@ site:
   base_url: "http://localhost:8000"  # Update to your site's URL
   theme: "default"             # The active theme (matches a folder in /themes)
   homepage: "home"
+  version: "0.0.1"
   
 # Cache Settings
 cache:
-  enabled: true                # Enable or disable caching
+  enabled: false                # Enable or disable caching
   directory: "/cache"          # Relative path to cache directory
 
 # Content Settings
@@ -40,9 +41,6 @@ markdown:
 
 # Theme Settings
 theme:
-  assets:
-    css: "/themes/{{ theme }}/style.css"
-    js: "/themes/{{ theme }}/scripts.js"
   name: "default"
   path: "themes/default"
 
@@ -50,10 +48,3 @@ theme:
 debug:
   enabled: false               # Enable or disable debug mode
   display_errors: false        # Display errors on the frontend
-
-# Database Settings (optional, for plugins or extensions)
-database:
-  enabled: false               # Enable only if extensions require it
-  driver: "sqlite"             # Database driver (e.g., sqlite, mysql)
-  path: "/data/cms.sqlite"     # Database file for SQLite
-

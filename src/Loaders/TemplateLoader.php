@@ -2,6 +2,7 @@
 
 namespace Jemer\PebbleCms\Loaders;
 
+use Jemer\PebbleCms\App;
 use Jemer\PebbleCms\TwigExtensions\AssetPathExtension;
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
@@ -13,12 +14,16 @@ class TemplateLoader
     public function __construct(string $tempPath)
     {
         $loader = new FilesystemLoader($tempPath);
+
+        $doCache = App::getInstance()->GetConfig("cache.enabled");
+
         $this->twig = new Environment(
-                                        $loader,
-                                        // [
-                                        //     'cache' => CACHE_DIR
-                                        // ]
-                                     );
+                                           $loader,
+                                           $doCache ? ['cache' => CACHE_DIR] : []
+                                        );
+
+
+
 
         $this->twig->addExtension(new AssetPathExtension("http://localhost:8000/themes/default"));                                     
     }

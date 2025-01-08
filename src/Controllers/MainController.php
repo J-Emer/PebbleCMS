@@ -3,7 +3,6 @@
 namespace Jemer\PebbleCms\Controllers;
 
 use Jemer\PebbleCms\App;
-use Jemer\PebbleCms\Loaders\ContentLoader;
 use Jemer\PebbleCms\Loaders\TemplateLoader;
 
 class MainController extends BaseController
