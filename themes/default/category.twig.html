@@ -9,8 +9,8 @@
         <ul>
         {% for post in posts %}
             <li>
-                <a href="/post/{{ post.slug }}">{{ post.title }}</a>
-                <small>by {{ post.author }} on {{ post.date }}</small>
+                <a href="/post/{{ post.metadata.slug }}">{{ post.metadata.title }}</a>
+                <small>by {{ post.metadata.author }} on {{ post.metadata.date }}</small>
             </li>
         {% endfor %}
         </ul>

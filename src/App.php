@@ -3,18 +3,20 @@
 namespace Jemer\PebbleCms;
 
 use Jemer\PebbleCms\Loaders\ConfigLoader;
+use Jemer\PebbleCms\Routing\PebbleRouter;
 
 class App
 {
 
     private static $instance = null;
     private ConfigLoader $config;
-
+    private PebbleRouter $router;
 
     
     private function __construct()
     {
         $this->config = new ConfigLoader(ROOT . "/config.yaml");
+        $this->router = new PebbleRouter();
     }
 
     public function __clone()
@@ -47,6 +49,10 @@ class App
     public function GetConfig(string $key)
     {
         return $this->config->get($key);
+    }
+    public function Run() : void
+    {
+        $this->router->Run();
     }
 
 }

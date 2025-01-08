@@ -15,9 +15,9 @@ class TemplateLoader
         $loader = new FilesystemLoader($tempPath);
         $this->twig = new Environment(
                                         $loader,
-                                        [
-                                            'cache' => CACHE_DIR
-                                        ]
+                                        // [
+                                        //     'cache' => CACHE_DIR
+                                        // ]
                                      );
 
         $this->twig->addExtension(new AssetPathExtension("http://localhost:8000/themes/default"));                                     
