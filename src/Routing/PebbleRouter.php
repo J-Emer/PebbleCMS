@@ -22,6 +22,17 @@ class PebbleRouter
         $this->router->get("/post/{slug}", "MainController@post");
         $this->router->get("/page/{slug}", "MainController@page");
         $this->router->get("/category/{slug}", "MainController@category");
+
+
+        //----------------admin routes-----------------//
+        $this->router->get("/admin", "AdminController@index");
+        $this->router->get("/admin/dashboard", "AdminController@dashboard");
+        $this->router->get("/admin/users", "AdminController@users");
+        $this->router->get("/admin/pages", "AdminController@pages");
+        $this->router->get("/admin/posts", "AdminController@posts");
+        $this->router->get("/admin/settings", "AdminController@settings");
+
+
     }
 
     public function Run()

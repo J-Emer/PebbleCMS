@@ -1,0 +1,28 @@
+{% extends 'base.twig.html' %}
+
+{% block title %}Posts{% endblock %}
+
+{% block content %}
+<h3>Post Management</h3>
+    <table class="post-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Published</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>My First Post</td>
+                <td>johndoe</td>
+                <td>Yes</td>
+                <td>
+                    <a href="#">Edit</a> | <a href="#">Delete</a>
+                </td>
+            </tr>
+            <!-- More post rows here -->
+        </tbody>
+    </table>
+{% endblock %}

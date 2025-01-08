@@ -1,0 +1,26 @@
+{% extends 'base.twig.html' %}
+
+{% block title %}Pages{% endblock %}
+
+{% block content %}
+    <h3>Page Management</h3>
+    <table class="page-table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Slug</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>About Us</td>
+                <td>/about-us</td>
+                <td>
+                    <a href="#">Edit</a> | <a href="#">Delete</a>
+                </td>
+            </tr>
+            <!-- More page rows here -->
+        </tbody>
+    </table>
+{% endblock %}

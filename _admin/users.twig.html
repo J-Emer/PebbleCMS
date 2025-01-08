@@ -1,0 +1,28 @@
+{% extends 'base.twig.html' %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}
+    <h3>User Management</h3>
+    <table class="user-table">
+        <thead>
+            <tr>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>johndoe</td>
+                <td>johndoe@example.com</td>
+                <td>Admin</td>
+                <td>
+                    <a href="#">Edit</a> | <a href="#">Delete</a>
+                </td>
+            </tr>
+            <!-- More user rows here -->
+        </tbody>
+    </table>
+{% endblock %}
