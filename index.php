@@ -7,6 +7,10 @@ use Jemer\PebbleCms\Loaders\TemplateLoader;
 require "vendor/autoload.php";
 require "src/Bootstrap.php";
 
+
+
+
+
 $configLoader = new ConfigLoader("config.yaml");
 
 $contentLoader = new ContentLoader();

@@ -2,6 +2,7 @@
 
 namespace Jemer\PebbleCms\TwigExtensions;
 
+use Jemer\PebbleCms\App;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
@@ -9,11 +10,9 @@ class AssetPathExtension extends AbstractExtension
 {
     private $basePath;
 
-    public function __construct(string $basePath)
+    public function __construct()
     {
-        // Set the base path for the assets
-        $this->basePath = rtrim($basePath, DIRECTORY_SEPARATOR);
-
+        $this->basePath = App::getInstance()->GetConfig("site.base_url") . "/" . App::getInstance()->GetConfig("theme.path");
     }
 
     /**
