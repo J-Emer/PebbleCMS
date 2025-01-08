@@ -8,6 +8,8 @@ define("PAGES_DIR", $root . "/content/pages");
 define("POSTS_DIR", $root . "/content/posts");
 define("CACHE_DIR", $root . "/cache");
 define("THEME_DIR", $root . "/themes");
+define("USERS_DIR", $root . "/users");
+
 
 
 
