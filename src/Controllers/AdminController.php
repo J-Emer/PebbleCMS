@@ -5,6 +5,7 @@ namespace Jemer\PebbleCms\Controllers;
 use Jemer\PebbleCms\Http\PostRequest;
 use Jemer\PebbleCms\Loaders\TemplateLoader;
 use Jemer\PebbleCms\Savers\ContentSaver;
+use Jemer\PebbleCms\Savers\PageSaver;
 
 class AdminController extends BaseController
 {
@@ -18,6 +19,18 @@ class AdminController extends BaseController
     public function index()
     {
         echo "---this is where we'll determin if the user needs to login, go to admin/dashboard for now---";   
+
+        // $page = [
+        //     'title' => 'Page Title',
+        //     'content' => 'page content',
+        //     'slug' => 'page-title',
+        //     'template' => "post",
+        // ];
+
+        // $pageSaver = new PageSaver(CONTENT_DIR);
+        // $success = $pageSaver->saveContent($page);
+
+        // echo json_encode(['success' => $success]);
     }
 
     public function dashboard()
@@ -40,10 +53,16 @@ class AdminController extends BaseController
     {
         $this->templateLoader->Render('settings', []);
     }  
+    /**
+     * Loads the newpost.twig.html template
+     */
     public function newpost()
     {
         $this->templateLoader->Render('newpost', []);
     } 
+    /**
+     * saves the new post data
+     */
     public function addnewpost()
     {
         $request = new PostRequest();
@@ -64,6 +83,28 @@ class AdminController extends BaseController
 
         echo json_encode(['success' => $success]);
     } 
+
+    public function newpage()
+    {
+        $this->templateLoader->Render('newpage', []);
+    }
+
+    public function addnewpage()
+    {
+        $request = new PostRequest();
+
+        $page = [
+            'title' => $request->Get('title'),
+            'content' => $request->Get('content'),
+            'slug' => $request->Get('slug'),
+            'template' => "post",
+        ];
+
+        $pageSaver = new PageSaver(CONTENT_DIR);
+        $success = $pageSaver->saveContent($page);
+
+        echo json_encode(['success' => "asdfasdfasdfsdaf"]);
+    }
 }
 
 ?>
