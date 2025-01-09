@@ -204,4 +204,50 @@ class ContentLoader
 
         return $pages;
     }
+
+        /**
+     * Get the total count of all posts in the system.
+     *
+     * @return int
+     */
+    public function getAllPostsCount(): int
+    {
+        $count = 0;
+        $postsDir = $this->baseDir . DIRECTORY_SEPARATOR . 'posts';
+
+        if ($this->filesystem->exists($postsDir)) {
+            // Recursively scan the /posts directory for .md files
+            $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($postsDir));
+            foreach ($iterator as $fileInfo) {
+                if ($fileInfo->isFile() && $fileInfo->getExtension() === 'md') {
+                    $count++;
+                }
+            }
+        }
+
+        return $count;
+    }
+
+       /**
+     * Get the total count of all pages in the system.
+     *
+     * @return int
+     */
+    public function getAllPagesCount(): int
+    {
+        $count = 0;
+        $pagesDir = $this->baseDir . DIRECTORY_SEPARATOR . 'pages';
+
+        if ($this->filesystem->exists($pagesDir)) {
+            // Scan the /pages directory for .md files
+            $iterator = new \DirectoryIterator($pagesDir);
+            foreach ($iterator as $fileInfo) {
+                if ($fileInfo->isFile() && $fileInfo->getExtension() === 'md') {
+                    $count++;
+                }
+            }
+        }
+
+        return $count;
+    }
 }

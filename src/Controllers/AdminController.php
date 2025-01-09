@@ -37,7 +37,11 @@ class AdminController extends BaseController
 
     public function dashboard()
     {
-        $this->templateLoader->Render('dashboard', []);
+        $postCount = $this->contentLoader->getAllPostsCount();
+        $pageCount = $this->contentLoader->getAllPagesCount();
+
+
+        $this->templateLoader->Render('dashboard', ["postcount" => $postCount, "pagecount" => $pageCount]);
     }
     public function users()
     {
