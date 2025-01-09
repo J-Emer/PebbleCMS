@@ -149,4 +149,59 @@ class ContentLoader
 
         return $posts;
     }
+
+
+
+
+    //------------------experimental----------------------//
+
+        /**
+     * Get all posts from the /content/posts directory, regardless of category.
+     *
+     * @return array
+     */
+    public function getAllPosts(): array
+    {
+        $posts = [];
+        $postsDir = $this->baseDir . DIRECTORY_SEPARATOR . 'posts';
+
+        if ($this->filesystem->exists($postsDir)) {
+            // Recursively scan the /posts directory for .md files
+            $iterator = new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($postsDir));
+            foreach ($iterator as $fileInfo) {
+                if ($fileInfo->isFile() && $fileInfo->getExtension() === 'md') {
+                    $filePath = $fileInfo->getRealPath();
+                    $postData = $this->parseFile($filePath);
+                    $posts[] = $postData;
+                }
+            }
+        }
+
+        return $posts;
+    }
+
+    /**
+     * Get all pages from the /content/pages directory.
+     *
+     * @return array
+     */
+    public function getAllPages(): array
+    {
+        $pages = [];
+        $pagesDir = $this->baseDir . DIRECTORY_SEPARATOR . 'pages';
+
+        if ($this->filesystem->exists($pagesDir)) {
+            // Scan the /pages directory for .md files
+            $iterator = new \DirectoryIterator($pagesDir);
+            foreach ($iterator as $fileInfo) {
+                if ($fileInfo->isFile() && $fileInfo->getExtension() === 'md') {
+                    $filePath = $fileInfo->getRealPath();
+                    $pageData = $this->parseFile($filePath);
+                    $pages[] = $pageData;
+                }
+            }
+        }
+
+        return $pages;
+    }
 }

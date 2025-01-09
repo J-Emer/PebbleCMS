@@ -2,6 +2,7 @@
 
 namespace Jemer\PebbleCms\Controllers;
 
+use Jemer\PebbleCms\Helpers\PostPathLoader;
 use Jemer\PebbleCms\Http\PostRequest;
 use Jemer\PebbleCms\Loaders\TemplateLoader;
 use Jemer\PebbleCms\Savers\ContentSaver;
@@ -13,6 +14,7 @@ class AdminController extends BaseController
 
     public function __construct()
     {
+        parent::__construct();
         $this->templateLoader = new TemplateLoader(ADMIN_DIR);
     }
 
@@ -43,11 +45,17 @@ class AdminController extends BaseController
     }    
     public function pages()
     {
-        $this->templateLoader->Render('pages', []);
+        $pages = $this->contentLoader->getAllPages();
+
+        $this->templateLoader->Render('pages', ["pages" => $pages]);
     }    
     public function posts()
     {
-        $this->templateLoader->Render('posts', []);
+        $posts = $this->contentLoader->getAllPosts();
+
+        //$this->dd($posts);
+
+        $this->templateLoader->Render('posts', ["posts" => $posts]);
     }    
     public function settings()
     {

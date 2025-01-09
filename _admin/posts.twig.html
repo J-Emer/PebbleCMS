@@ -8,21 +8,33 @@
         <thead>
             <tr>
                 <th>Title</th>
+                <th>Slug</th>
                 <th>Author</th>
+                <th>Category</th>
                 <th>Published</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>My First Post</td>
-                <td>johndoe</td>
-                <td>Yes</td>
-                <td>
-                    <a href="#" class="btn btn-primary">Edit</a> | <a href="#" class="btn btn-danger">Delete</a>
-                </td>
-            </tr>
-            <!-- More post rows here -->
+
+            {% for post in posts %}
+                <tr>
+                    <td>{{ post.metadata.title }}</td>
+                    <td>{{ post.metadata.slug }}</td>
+                    <td>{{ post.metadata.author }}</td>
+                    <td>{{ post.metadata.category }}</td>
+                    <td>Yes</td>
+                    <td>
+                        <a href="#" class="btn btn-primary">Edit</a> | <a href="#" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+            {% else %}
+
         </tbody>
     </table>
+
+
+
+        
+    {% endfor %}
 {% endblock %}

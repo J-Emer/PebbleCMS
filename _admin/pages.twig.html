@@ -14,13 +14,21 @@
         </thead>
         <tbody>
             <tr>
-                <td>About Us</td>
-                <td>/about-us</td>
-                <td>
-                    <a href="#">Edit</a> | <a href="#">Delete</a>
-                </td>
+
+                {% for page in pages %}
+                    <tr>
+                        <td>{{ page.metadata.title }}</td>
+                        <td>{{ page.metadata.slug }}</td>
+                        <td>
+                            <a href="#" class="btn btn-primary">Edit</a> | <a href="#" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                {% else %}
+
             </tr>
             <!-- More page rows here -->
         </tbody>
     </table>
+
+    {% endfor %}
 {% endblock %}
