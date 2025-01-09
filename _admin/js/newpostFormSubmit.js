@@ -48,18 +48,20 @@ submitBtn.addEventListener('click', (e) => {
 
 
     // Send data using Fetch API (Replace '/your-server-endpoint' with your actual endpoint)
-    fetch('/your-server-endpoint', {
+    fetch('/admin/posts/addnewpost', {
         method: 'POST',
         body: formData
     })
     .then(response => response.json())  // Assume the server returns JSON
     .then(data => {
-        console.log('Success:', data);
-        // Optionally, reset the form or show a success message
-        document.getElementById('content-form').reset();
+        console.log('Success:', data); //---show a success popup?
+        if (data.success)
+        {
+            window.location.href = '/admin/posts';
+        }
     })
     .catch(error => {
-        console.error('Error:', error);
+        console.error('Error:', error);//---show error message, stay on same page
     });
 
 });

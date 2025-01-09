@@ -1,1 +1,1 @@
-console.log("---hello world");
+console.log("---hello world: This is an example .js file in /themes/default/js/main.js");
