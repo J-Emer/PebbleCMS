@@ -3,6 +3,23 @@
     .htaccess
     LICENSE
     README.md
+/_admin/
+        base.twig.html
+        dashboard.twig.html
+    /js/
+            editpostFormSubmit.js
+            newpageFormSubmit.js
+            newpostFormSubmit.js
+        login.twig.html
+        newpage.twig.html
+        newpost.twig.html
+        pages.twig.html
+        postedit.twig.html
+        posts.twig.html
+        settings.twig.html
+        signup.twig.html
+        style.css
+        users.twig.html
     composer.json
     composer.lock
     config.yaml
@@ -11,18 +28,52 @@
             about.md
             contact.md
             home.md
+            new-page.md
+            next-page.md
+            page-title.md
     /posts/
-        /category 1/
-            exciting-feature.md
-            my-first-blog-post.md
-        /category 2/
-            platform-updates.md
+        /announcements/
+                exciting-feature.md
+                my-first-blog-post.md
+        /updates/
+                first-post.md
+                fourth-post.md
+                platform-updates.md
+                third-post.md
     directory_structure.txt
+    hashpassword.php
     index.php
     notes.txt
 /public/
     save_structure.php
 /src/
+        App.php
+        Bootstrap.php
+    /Controllers/
+            AdminController.php
+            BaseController.php
+            MainController.php
+    /Helpers/
+            PostPathLoader.php
+    /Http/
+            PostRequest.php
+    /Loaders/
+            ConfigLoader.php
+            ContentLoader.php
+            TemplateLoader.php
+            UserLoader.php
+    /Managers/
+            SessionManager.php
+    /Middlewares/
+            AuthMiddleware.php
+    /Routing/
+            PebbleRouter.php
+    /Savers/
+            ContentSaver.php
+            PageSaver.php
+            UserSaver.php
+    /TwigExtensions/
+            AssetPathExtension.php
 /themes/
     /default/
             404.twig.html
@@ -35,3 +86,5 @@
                 main.js
             page.twig.html
             post.twig.html
+/users/
+        bob.yaml
