@@ -5,17 +5,20 @@ namespace Jemer\PebbleCms\Controllers;
 use Jemer\PebbleCms\Helpers\PostPathLoader;
 use Jemer\PebbleCms\Http\PostRequest;
 use Jemer\PebbleCms\Loaders\TemplateLoader;
+use Jemer\PebbleCms\Middlewares\AuthMiddleware;
 use Jemer\PebbleCms\Savers\ContentSaver;
 use Jemer\PebbleCms\Savers\PageSaver;
 
 class AdminController extends BaseController
 {
     private TemplateLoader $templateLoader;
+    private AuthMiddleware $authMiddleware;
 
     public function __construct()
     {
         parent::__construct();
         $this->templateLoader = new TemplateLoader(ADMIN_DIR);
+        $this->authMiddleware = new AuthMiddleware('/admin/login');
     }
 
     public function index()
@@ -33,6 +36,30 @@ class AdminController extends BaseController
         // $success = $pageSaver->saveContent($page);
 
         // echo json_encode(['success' => $success]);
+    }
+
+    //show the login screen
+    public function showlogin()
+    {
+        //render login template
+    }
+
+    //handle the login logic
+    public function login()
+    {
+         // Retrieve POST data
+         $username = $_POST['username'] ?? '';
+         $password = $_POST['password'] ?? '';
+
+         //authenticate this user
+         $this->authMiddleware->authenticate($username, $password, '/admin/dashboard');
+            
+    }
+
+    //handle the logout functions, then redirect to login
+    public function logout()
+    {
+        $this->authMiddleware->logout();
     }
 
     public function dashboard()
@@ -116,6 +143,25 @@ class AdminController extends BaseController
         $success = $pageSaver->saveContent($page);
 
         echo json_encode(['success' => "asdfasdfasdfsdaf"]);
+    }
+
+
+    /**
+     * shows the post-edit template
+     */
+    public function editpost($slug)
+    {
+        $post = $this->contentLoader->loadContent($slug);
+
+        $this->templateLoader->Render('postedit', ['post' => $post]);
+    }
+
+    /***
+     * handles the updating of a post -> redirects to the /admin/posts route
+     */
+    public function updatepost()
+    {
+
     }
 }
 

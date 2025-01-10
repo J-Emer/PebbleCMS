@@ -25,7 +25,7 @@
                     <td>{{ post.metadata.category }}</td>
                     <td>Yes</td>
                     <td>
-                        <a href="#" class="btn btn-primary">Edit</a> | <a href="#" class="btn btn-danger">Delete</a>
+                        <a href="/admin/post/edit/{{ post.metadata.slug }}" class="btn btn-primary">Edit</a> | <a href="#" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
             {% else %}

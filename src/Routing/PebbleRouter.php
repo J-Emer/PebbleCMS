@@ -37,6 +37,10 @@ class PebbleRouter
         $this->router->post("/admin/posts/addnewpost", "AdminController@addnewpost");
         $this->router->post("/admin/pages/addnewpage", "AdminController@addnewpage");
 
+        $this->router->get("/admin/post/edit/{slug}", "AdminController@editpost");
+
+
+        $this->router->post("/admin/post/update", "AdminController@updatepost");
 
 
 
