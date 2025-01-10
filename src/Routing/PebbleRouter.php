@@ -25,6 +25,11 @@ class PebbleRouter
 
 
         //----------------admin routes-----------------//
+        $this->router->get("/admin/login", "AdminController@showlogin");
+        $this->router->get("/admin/logout", "AdminController@logout");
+
+
+        
         $this->router->get("/admin", "AdminController@index");
         $this->router->get("/admin/dashboard", "AdminController@dashboard");
         $this->router->get("/admin/users", "AdminController@users");
@@ -34,8 +39,10 @@ class PebbleRouter
         $this->router->get("/admin/posts/newpost", "AdminController@newpost");
         $this->router->get("/admin/pages/newpage", "AdminController@newpage");
 
+        $this->router->post("/admin/handlelogin", "AdminController@handlelogin");
         $this->router->post("/admin/posts/addnewpost", "AdminController@addnewpost");
         $this->router->post("/admin/pages/addnewpage", "AdminController@addnewpage");
+
 
         $this->router->get("/admin/post/edit/{slug}", "AdminController@editpost");
 

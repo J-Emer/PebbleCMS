@@ -23,37 +23,29 @@ class AdminController extends BaseController
 
     public function index()
     {
-        echo "---this is where we'll determin if the user needs to login, go to admin/dashboard for now---";   
+        $this->authMiddleware->check();
 
-        // $page = [
-        //     'title' => 'Page Title',
-        //     'content' => 'page content',
-        //     'slug' => 'page-title',
-        //     'template' => "post",
-        // ];
-
-        // $pageSaver = new PageSaver(CONTENT_DIR);
-        // $success = $pageSaver->saveContent($page);
-
-        // echo json_encode(['success' => $success]);
+        header("Location: /admin/dashboard");
     }
 
     //show the login screen
     public function showlogin()
     {
         //render login template
+        $this->templateLoader->Render('login', []);
     }
 
     //handle the login logic
-    public function login()
+    public function handlelogin()
     {
          // Retrieve POST data
          $username = $_POST['username'] ?? '';
          $password = $_POST['password'] ?? '';
 
+        //$this->dd([$username, $password]);
+
          //authenticate this user
-         $this->authMiddleware->authenticate($username, $password, '/admin/dashboard');
-            
+         $this->authMiddleware->authenticate($username, $password, '/admin/dashboard'); 
     }
 
     //handle the logout functions, then redirect to login
@@ -64,6 +56,8 @@ class AdminController extends BaseController
 
     public function dashboard()
     {
+        $this->authMiddleware->check();
+
         $postCount = $this->contentLoader->getAllPostsCount();
         $pageCount = $this->contentLoader->getAllPagesCount();
 
@@ -72,16 +66,22 @@ class AdminController extends BaseController
     }
     public function users()
     {
+        $this->authMiddleware->check();
+
         $this->templateLoader->Render('users', []);
     }    
     public function pages()
     {
+        $this->authMiddleware->check();
+
         $pages = $this->contentLoader->getAllPages();
 
         $this->templateLoader->Render('pages', ["pages" => $pages]);
     }    
     public function posts()
     {
+        $this->authMiddleware->check();
+
         $posts = $this->contentLoader->getAllPosts();
 
         //$this->dd($posts);
@@ -90,6 +90,8 @@ class AdminController extends BaseController
     }    
     public function settings()
     {
+        $this->authMiddleware->check();
+
         $this->templateLoader->Render('settings', []);
     }  
     /**
@@ -97,6 +99,8 @@ class AdminController extends BaseController
      */
     public function newpost()
     {
+        $this->authMiddleware->check();
+
         $this->templateLoader->Render('newpost', []);
     } 
     /**
@@ -104,6 +108,8 @@ class AdminController extends BaseController
      */
     public function addnewpost()
     {
+        $this->authMiddleware->check();
+
         $request = new PostRequest();
 
         $post = [
@@ -125,11 +131,15 @@ class AdminController extends BaseController
 
     public function newpage()
     {
+        $this->authMiddleware->check();
+
         $this->templateLoader->Render('newpage', []);
     }
 
     public function addnewpage()
     {
+        $this->authMiddleware->check();
+
         $request = new PostRequest();
 
         $page = [
@@ -151,6 +161,8 @@ class AdminController extends BaseController
      */
     public function editpost($slug)
     {
+        $this->authMiddleware->check();
+
         $post = $this->contentLoader->loadContent($slug);
 
         $this->templateLoader->Render('postedit', ['post' => $post]);
@@ -161,6 +173,7 @@ class AdminController extends BaseController
      */
     public function updatepost()
     {
+        $this->authMiddleware->check();
 
     }
 }
