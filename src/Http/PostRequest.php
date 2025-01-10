@@ -13,6 +13,14 @@ class PostRequest
 
         return null;
     }
+
+    public function dump()
+    {
+        if(isset($_POST))
+        {
+            var_dump($_POST);
+        }
+    }
 }
 
 ?>

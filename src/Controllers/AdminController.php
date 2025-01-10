@@ -8,6 +8,8 @@ use Jemer\PebbleCms\Loaders\TemplateLoader;
 use Jemer\PebbleCms\Middlewares\AuthMiddleware;
 use Jemer\PebbleCms\Savers\ContentSaver;
 use Jemer\PebbleCms\Savers\PageSaver;
+use Jemer\PebbleCms\Savers\UserSaver;
+use Symfony\Component\HttpFoundation\Request;
 
 class AdminController extends BaseController
 {
@@ -46,6 +48,38 @@ class AdminController extends BaseController
 
          //authenticate this user
          $this->authMiddleware->authenticate($username, $password, '/admin/dashboard'); 
+    }
+
+    public function showsignup()
+    {
+        $this->templateLoader->Render('signup', []);
+    }
+
+    public function handlesignup()
+    {
+        $req = new PostRequest();
+
+        if($req->Get('password') === $req->Get('confirm-password'))
+        {
+            $userSaver = new UserSaver();
+
+            $username = $req->Get('username');
+            $password = password_hash($req->Get('password'), PASSWORD_DEFAULT);
+    
+            $saved = $userSaver->SaveUser([
+                                                'username' => $username,
+                                                'password' => $password,
+                                                'role' => 'admin'
+                                            ]);
+            
+            header("Location: /admin/login");
+        }
+        else
+        {
+            header("Location: /admin/signup");
+        }
+
+
     }
 
     //handle the logout functions, then redirect to login

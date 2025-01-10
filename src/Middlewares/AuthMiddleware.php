@@ -71,7 +71,7 @@ class AuthMiddleware
 
                 foreach ($user as $key => $value) 
                 {
-                    echo "setting: " . $key . " | " . $value . "<br/>";
+                    //echo "setting: " . $key . " | " . $value . "<br/>";
                     SessionManager::set($key, $value);
                 }
 

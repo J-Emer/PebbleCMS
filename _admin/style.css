@@ -244,3 +244,122 @@ input[type="text"], select {
     border: 1px solid #ccc;
     border-radius: 5px;
 }
+
+
+
+/* General Styles for the login page */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: aliceblue;
+}
+
+/* Login Container */
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #ecf0f1;
+}
+
+/* Form Container */
+.form-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Title */
+h2 {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #2c3e50;
+}
+
+/* Form Group */
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* Label Styles */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #2c3e50;
+}
+
+/* Input Fields */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+/* Input Fields */
+input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+/* Submit Button */
+input[type="submit"] {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #3498db; /* Primary color */
+    color: white;
+    border: 2px solid #3498db;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #2980b9;
+    border-color: #2980b9;
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+input[type="submit"]:active {
+    background-color: #1d6ca1; /* Darker blue */
+    border-color: #1d6ca1;
+    transform: translateY(0); /* Reset lift effect */
+}
+
+/* Disabled State for Submit Button */
+input[type="submit"]:disabled {
+    background-color: #bdc3c7;
+    color: #7f8c8d;
+    border-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+/* Adjust spacing for the form */
+.form-container input[type="text"] {
+    margin-bottom: 10px;
+}
+
+.form-container .form-group:last-child {
+    margin-bottom: 0;
+}
+
+#signup{
+    margin-left: 70px;
+}
+

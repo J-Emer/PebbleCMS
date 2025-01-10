@@ -27,6 +27,10 @@ class PebbleRouter
         //----------------admin routes-----------------//
         $this->router->get("/admin/login", "AdminController@showlogin");
         $this->router->get("/admin/logout", "AdminController@logout");
+        $this->router->get("/admin/signup", "AdminController@showsignup");
+        $this->router->post("/admin/handlesignup", "AdminController@handlesignup");
+
+
 
 
         
