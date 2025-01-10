@@ -84,4 +84,14 @@ class AuthMiddleware
         header('Location:' . $this->loginURL);
         exit;
     }
+
+    public function GetCurrentUserName() : string
+    {
+        if(SessionManager::exists('username'))
+        {
+            return SessionManager::get('username');
+        }
+
+        return null;
+    }
 }

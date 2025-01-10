@@ -5,6 +5,7 @@ namespace Jemer\PebbleCms\Controllers;
 use Jemer\PebbleCms\Helpers\PostPathLoader;
 use Jemer\PebbleCms\Http\PostRequest;
 use Jemer\PebbleCms\Loaders\TemplateLoader;
+use Jemer\PebbleCms\Loaders\UserLoader;
 use Jemer\PebbleCms\Middlewares\AuthMiddleware;
 use Jemer\PebbleCms\Savers\ContentSaver;
 use Jemer\PebbleCms\Savers\PageSaver;
@@ -96,13 +97,16 @@ class AdminController extends BaseController
         $pageCount = $this->contentLoader->getAllPagesCount();
 
 
-        $this->templateLoader->Render('dashboard', ["postcount" => $postCount, "pagecount" => $pageCount]);
+        $this->templateLoader->Render('dashboard', ["postcount" => $postCount, "pagecount" => $pageCount, "username" => $this->authMiddleware->GetCurrentUserName()]);
     }
     public function users()
     {
         $this->authMiddleware->check();
 
-        $this->templateLoader->Render('users', []);
+        $usersLoader = new UserLoader();
+        $users = $usersLoader->loadUsers();
+
+        $this->templateLoader->Render('users', ["users" => $users]);
     }    
     public function pages()
     {
